@@ -19,12 +19,22 @@ type
     TabSheet5: TTabSheet;
     Panel1: TPanel;
     Panel2: TPanel;
-    RzButton1: TRzButton;
+    predajb: TRzButton;
     RzDBGrid1: TRzDBGrid;
-    RzButton2: TRzButton;
+    vymaz: TRzButton;
     StaticText1: TStaticText;
     StaticText2: TStaticText;
     RzDBGrid2: TRzDBGrid;
+    Panel3: TPanel;
+    predaj: TPanel;
+    vystavit: TRzButton;
+    storno: TRzButton;
+    StaticText3: TStaticText;
+    StaticText4: TStaticText;
+    StaticText5: TStaticText;
+    Edit1: TEdit;
+    vratit: TStaticText;
+    celkomp: TStaticText;
   private
     { Private declarations }
   public

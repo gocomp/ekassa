@@ -52,7 +52,7 @@ object dbform: Tdbform
     Params.Strings = (
       'Database=kassa'
       'User_Name=root'
-      'Password=03121190'
+      'Password=0312gjoe'
       'Server=localhost'
       'DriverID=MySQL')
     UpdateOptions.AssignedValues = [uvUpdateChngFields, uvUpdateMode, uvLockMode, uvLockPoint, uvLockWait, uvRefreshMode, uvFetchGeneratorsPoint, uvCheckRequired, uvCheckReadOnly, uvCheckUpdatable, uvAutoCommitUpdates]
@@ -111,7 +111,6 @@ object dbform: Tdbform
     end
   end
   object vydaj: TFDTable
-    Active = True
     IndexFieldNames = 'id'
     Connection = FDConnection1
     UpdateOptions.UpdateTableName = 'kassa.vydaj'
@@ -220,6 +219,7 @@ object dbform: Tdbform
     end
   end
   object prijem: TFDTable
+    Active = True
     IndexFieldNames = 'id'
     Connection = FDConnection1
     UpdateOptions.UpdateTableName = 'kassa.prijem'
@@ -234,6 +234,7 @@ object dbform: Tdbform
     end
   end
   object predajka: TFDTable
+    Active = True
     IndexFieldNames = 'id'
     Connection = FDConnection1
     UpdateOptions.UpdateTableName = 'kassa.predajka'
@@ -289,6 +290,7 @@ object dbform: Tdbform
     end
   end
   object partner: TFDTable
+    Active = True
     IndexFieldNames = 'id'
     Connection = FDConnection1
     UpdateOptions.UpdateTableName = 'kassa.partner'

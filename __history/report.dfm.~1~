@@ -1,0 +1,100 @@
+object Form3: TForm3
+  Left = 0
+  Top = 0
+  Caption = 'Report'
+  ClientHeight = 186
+  ClientWidth = 505
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  OldCreateOrder = False
+  PixelsPerInch = 96
+  TextHeight = 13
+  object ZConnection1: TZConnection
+    ControlsCodePage = cCP_UTF16
+    Catalog = ''
+    DesignConnection = True
+    HostName = ''
+    Port = 0
+    Database = ''
+    User = 'user'
+    Password = 'password'
+    Protocol = 'mysql'
+    Left = 24
+    Top = 8
+  end
+  object QuerySQL: TZQuery
+    Connection = ZConnection1
+    Params = <>
+    Left = 64
+    Top = 80
+  end
+  object Prijem: TZTable
+    Connection = ZConnection1
+    Left = 448
+    Top = 80
+  end
+  object Tempdb: TZUpdateSQL
+    UseSequenceFieldForRefreshSQL = False
+    Left = 80
+    Top = 8
+  end
+  object DNastavenia: TDataSource
+    DataSet = Nastavenie
+    Left = 400
+    Top = 16
+  end
+  object DVydaj: TDataSource
+    DataSet = Vydajka
+    Left = 288
+    Top = 16
+  end
+  object DPrijem: TDataSource
+    DataSet = Prijem
+    Left = 456
+    Top = 16
+  end
+  object DPredajka: TDataSource
+    DataSet = Predajka
+    Left = 344
+    Top = 16
+  end
+  object DSklad: TDataSource
+    DataSet = Sklad
+    Left = 232
+    Top = 16
+  end
+  object Nastavenie: TZTable
+    Connection = ZConnection1
+    Left = 392
+    Top = 80
+  end
+  object Predajka: TZTable
+    Connection = ZConnection1
+    Left = 336
+    Top = 80
+  end
+  object Vydajka: TZTable
+    Connection = ZConnection1
+    Left = 280
+    Top = 80
+  end
+  object Sklad: TZTable
+    Connection = ZConnection1
+    Left = 224
+    Top = 80
+  end
+  object Partner: TZTable
+    Connection = ZConnection1
+    Left = 168
+    Top = 80
+  end
+  object DPartner: TDataSource
+    DataSet = Partner
+    Left = 176
+    Top = 16
+  end
+end

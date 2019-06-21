@@ -1,0 +1,75 @@
+unit db;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Data.DB,
+  ZDataset, ZAbstractRODataset, ZAbstractDataset, ZAbstractConnection,
+  ZConnection, ZAbstractTable;
+
+type
+  TForm2 = class(TForm)
+    ZConnection1: TZConnection;
+    QuerySQL: TZQuery;
+    Prijem: TZTable;
+    Prijemid: TIntegerField;
+    DNastavenia: TDataSource;
+    DVydaj: TDataSource;
+    DPrijem: TDataSource;
+    DPredajka: TDataSource;
+    DSklad: TDataSource;
+    Nastavenie: TZTable;
+    NastavenieID: TIntegerField;
+    Nastaveniefirma: TWideMemoField;
+    Nastavenieadresa: TWideMemoField;
+    Nastaveniemesto: TWideMemoField;
+    Nastaveniepsc: TIntegerField;
+    Nastavenieico: TIntegerField;
+    Nastaveniedic: TIntegerField;
+    Nastavenieicdph: TWideMemoField;
+    Nastaveniedkp: TIntegerField;
+    Nastavenierok: TIntegerField;
+    Nastavenieblokcislo: TIntegerField;
+    Predajka: TZTable;
+    Predajkaid: TIntegerField;
+    Predajkapartnerid: TIntegerField;
+    Predajkanazov: TWideMemoField;
+    Predajkacenacelkom: TFloatField;
+    Predajkadatumcas: TDateTimeField;
+    Predajkadph: TIntegerField;
+    Predajkaodoslane: TShortintField;
+    Predajkadanovyuradid: TIntegerField;
+    Predajkaodoslanedatum: TDateTimeField;
+    Vydajka: TZTable;
+    Vydajkaid: TIntegerField;
+    Sklad: TZTable;
+    Skladid: TIntegerField;
+    Skladnazov: TWideMemoField;
+    Skladcena: TFloatField;
+    Skladdph: TFloatField;
+    Skladkus: TIntegerField;
+    Partner: TZTable;
+    Partnerid: TIntegerField;
+    Partnerfirma: TWideMemoField;
+    Partnerico: TIntegerField;
+    Partnerdic: TIntegerField;
+    Partnericdph: TWideMemoField;
+    Partneradresa: TWideMemoField;
+    Partnerpsc: TIntegerField;
+    Partnerzlava: TFloatField;
+    DPartner: TDataSource;
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  Form2: TForm2;
+
+implementation
+
+{$R *.dfm}
+
+end.

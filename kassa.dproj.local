@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+	<Transactions>
+    <Transaction>2018/11/27 20:57:44.000.981,=C:\Users\GJOE\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2019/05/21 01:13:46.000.924,=C:\Users\GJOE\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2019/06/20 23:06:19.080,=C:\Users\GJOE\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2019/06/20 23:09:30.383,=C:\Users\GJOE\Documents\Embarcadero\Studio\Projects\Unit2.pas</Transaction>
+    <Transaction>2019/06/20 23:09:38.857,C:\Users\GJOE\Documents\Embarcadero\Studio\Projects\db.dfm=C:\Users\GJOE\Documents\Embarcadero\Studio\Projects\Unit2.dfm</Transaction>
+    <Transaction>2019/06/20 23:09:38.857,C:\Users\GJOE\Documents\Embarcadero\Studio\Projects\db.pas=C:\Users\GJOE\Documents\Embarcadero\Studio\Projects\Unit2.pas</Transaction>
+    <Transaction>2019/06/20 23:10:44.020,=C:\Users\GJOE\Documents\Embarcadero\Studio\Projects\Unit3.pas</Transaction>
+    <Transaction>2019/06/20 23:11:01.728,C:\Users\GJOE\Documents\Embarcadero\Studio\Projects\report.pas=C:\Users\GJOE\Documents\Embarcadero\Studio\Projects\Unit3.pas</Transaction>
+    <Transaction>2019/06/20 23:11:01.728,C:\Users\GJOE\Documents\Embarcadero\Studio\Projects\report.dfm=C:\Users\GJOE\Documents\Embarcadero\Studio\Projects\Unit3.dfm</Transaction>
+    <Transaction>2019/06/20 23:56:35.351,C:\ekassa\report.dfm=C:\Users\GJOE\Documents\Embarcadero\Studio\Projects\report.dfm</Transaction>
+    <Transaction>2019/06/20 23:56:35.351,C:\ekassa\report.pas=C:\Users\GJOE\Documents\Embarcadero\Studio\Projects\report.pas</Transaction>
+    <Transaction>2019/06/20 23:56:37.201,C:\ekassa\db.pas=C:\Users\GJOE\Documents\Embarcadero\Studio\Projects\db.pas</Transaction>
+    <Transaction>2019/06/20 23:56:37.201,C:\ekassa\db.dfm=C:\Users\GJOE\Documents\Embarcadero\Studio\Projects\db.dfm</Transaction>
+    <Transaction>2019/06/20 23:56:46.872,C:\ekassa\ekassa.pas=C:\Users\GJOE\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2019/06/20 23:56:46.872,C:\ekassa\ekassa.dfm=C:\Users\GJOE\Documents\Embarcadero\Studio\Projects\Unit1.dfm</Transaction>
+    <Transaction>2019/06/20 23:57:13.584,C:\ekassa\kassa.dproj=C:\Users\GJOE\Documents\Embarcadero\Studio\Projects\Project1.dproj</Transaction>
+  </Transactions>
+</BorlandProject>

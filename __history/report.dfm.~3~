@@ -1,0 +1,236 @@
+object Form3: TForm3
+  Left = 0
+  Top = 0
+  Caption = 'Report'
+  ClientHeight = 186
+  ClientWidth = 505
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  OldCreateOrder = False
+  PixelsPerInch = 96
+  TextHeight = 13
+  object ZConnection1: TZConnection
+    ControlsCodePage = cCP_UTF16
+    Catalog = ''
+    Properties.Strings = (
+      'controls_cp=CP_UTF16')
+    Connected = True
+    DesignConnection = True
+    HostName = '127.0.0.1'
+    Port = 3306
+    Database = 'kassa'
+    User = 'root'
+    Password = '03121190'
+    Protocol = 'mysql'
+    LibraryLocation = 'C:\ekassa\libmariadb.dll'
+    Left = 24
+    Top = 8
+  end
+  object QuerySQL: TZQuery
+    Connection = ZConnection1
+    Params = <>
+    Left = 80
+    Top = 64
+  end
+  object Prijem: TZTable
+    Connection = ZConnection1
+    Active = True
+    TableName = 'prijem'
+    Left = 448
+    Top = 80
+    object Prijemid: TIntegerField
+      FieldName = 'id'
+      Required = True
+    end
+  end
+  object Tempdb: TZUpdateSQL
+    UseSequenceFieldForRefreshSQL = False
+    Left = 80
+    Top = 8
+  end
+  object DNastavenia: TDataSource
+    DataSet = Nastavenie
+    Left = 400
+    Top = 16
+  end
+  object DVydaj: TDataSource
+    DataSet = Vydajka
+    Left = 288
+    Top = 16
+  end
+  object DPrijem: TDataSource
+    DataSet = Prijem
+    Left = 456
+    Top = 16
+  end
+  object DPredajka: TDataSource
+    DataSet = Predajka
+    Left = 344
+    Top = 16
+  end
+  object DSklad: TDataSource
+    DataSet = Sklad
+    Left = 232
+    Top = 16
+  end
+  object Nastavenie: TZTable
+    Connection = ZConnection1
+    Active = True
+    TableName = 'nastavenie'
+    Left = 392
+    Top = 80
+    object NastavenieID: TIntegerField
+      FieldName = 'ID'
+      Required = True
+    end
+    object Nastaveniefirma: TWideMemoField
+      FieldName = 'firma'
+      BlobType = ftWideMemo
+    end
+    object Nastavenieadresa: TWideMemoField
+      FieldName = 'adresa'
+      BlobType = ftWideMemo
+    end
+    object Nastaveniemesto: TWideMemoField
+      FieldName = 'mesto'
+      BlobType = ftWideMemo
+    end
+    object Nastaveniepsc: TIntegerField
+      FieldName = 'psc'
+    end
+    object Nastavenieico: TIntegerField
+      FieldName = 'ico'
+    end
+    object Nastaveniedic: TIntegerField
+      FieldName = 'dic'
+    end
+    object Nastavenieicdph: TWideMemoField
+      FieldName = 'icdph'
+      BlobType = ftWideMemo
+    end
+    object Nastaveniedkp: TIntegerField
+      FieldName = 'dkp'
+    end
+    object Nastavenierok: TIntegerField
+      FieldName = 'rok'
+    end
+    object Nastavenieblokcislo: TIntegerField
+      FieldName = 'blok-cislo'
+    end
+  end
+  object Predajka: TZTable
+    Connection = ZConnection1
+    Active = True
+    TableName = 'predajka'
+    Left = 336
+    Top = 80
+    object Predajkaid: TIntegerField
+      FieldName = 'id'
+      Required = True
+    end
+    object Predajkapartnerid: TIntegerField
+      FieldName = 'partnerid'
+    end
+    object Predajkanazov: TWideMemoField
+      FieldName = 'nazov'
+      BlobType = ftWideMemo
+    end
+    object Predajkacenacelkom: TFloatField
+      FieldName = 'cenacelkom'
+    end
+    object Predajkadatumcas: TDateTimeField
+      FieldName = 'datumcas'
+    end
+    object Predajkadph: TIntegerField
+      FieldName = 'dph'
+    end
+    object Predajkaodoslane: TShortintField
+      FieldName = 'odoslane'
+    end
+    object Predajkadanovyuradid: TIntegerField
+      FieldName = 'danovyuradid'
+    end
+    object Predajkaodoslanedatum: TDateTimeField
+      FieldName = 'odoslanedatum'
+    end
+  end
+  object Vydajka: TZTable
+    Connection = ZConnection1
+    Active = True
+    TableName = 'vydaj'
+    Left = 280
+    Top = 80
+    object Vydajkaid: TIntegerField
+      FieldName = 'id'
+      Required = True
+    end
+  end
+  object Sklad: TZTable
+    Connection = ZConnection1
+    Active = True
+    TableName = 'sklad'
+    Left = 224
+    Top = 80
+    object Skladid: TIntegerField
+      FieldName = 'id'
+      Required = True
+    end
+    object Skladnazov: TWideMemoField
+      FieldName = 'nazov'
+      BlobType = ftWideMemo
+    end
+    object Skladcena: TFloatField
+      FieldName = 'cena'
+    end
+    object Skladdph: TFloatField
+      FieldName = 'dph'
+    end
+    object Skladkus: TIntegerField
+      FieldName = 'kus'
+    end
+  end
+  object Partner: TZTable
+    Connection = ZConnection1
+    Active = True
+    TableName = 'partner'
+    Left = 168
+    Top = 80
+    object Partnerid: TIntegerField
+      FieldName = 'id'
+      Required = True
+    end
+    object Partnerfirma: TWideMemoField
+      FieldName = 'firma'
+      BlobType = ftWideMemo
+    end
+    object Partnerico: TIntegerField
+      FieldName = 'ico'
+    end
+    object Partnerdic: TIntegerField
+      FieldName = 'dic'
+    end
+    object Partnericdph: TWideMemoField
+      FieldName = 'icdph'
+      BlobType = ftWideMemo
+    end
+    object Partneradresa: TWideMemoField
+      FieldName = 'adresa'
+      BlobType = ftWideMemo
+    end
+    object Partnerpsc: TIntegerField
+      FieldName = 'psc'
+    end
+    object Partnerzlava: TFloatField
+      FieldName = 'zlava'
+    end
+  end
+  object DPartner: TDataSource
+    DataSet = Partner
+    Left = 176
+    Top = 16
+  end
+end

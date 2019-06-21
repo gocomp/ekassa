@@ -80,6 +80,7 @@ CREATE TABLE `predajka` (
   `odoslane` tinyint(1) DEFAULT NULL,
   `danovyuradid` int(11) DEFAULT NULL,
   `odoslanedatum` datetime DEFAULT NULL,
+  `vystavene` int(1) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci PACK_KEYS=0;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -120,8 +121,12 @@ CREATE TABLE `sklad` (
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `vydaj` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
+  `nazov` mediumtext COLLATE utf8mb4_general_ci,
+  `cena` float DEFAULT NULL,
+  `dph` int(11) DEFAULT NULL,
+  `kus` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci PACK_KEYS=0;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci PACK_KEYS=0;
 /*!40101 SET character_set_client = @saved_cs_client */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -133,4 +138,4 @@ CREATE TABLE `vydaj` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-06-20 23:56:05
+-- Dump completed on 2019-06-21 23:57:54

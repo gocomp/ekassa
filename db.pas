@@ -68,6 +68,7 @@ type
     vydajcena: TSingleField;
     vydajdph: TIntegerField;
     vydajkus: TIntegerField;
+    predajkavystavene: TIntegerField;
   private
     { Private declarations }
   public

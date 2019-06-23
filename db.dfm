@@ -34,7 +34,7 @@ object dbform: Tdbform
     Top = 32
   end
   object DSklad: TDataSource
-    DataSet = vydaj
+    DataSet = sklad
     Left = 232
     Top = 16
   end
@@ -93,6 +93,7 @@ object dbform: Tdbform
       FieldName = 'nazov'
       Origin = 'nazov'
       BlobType = ftMemo
+      DisplayValue = dvFull
     end
     object skladcena: TSingleField
       AutoGenerateValue = arDefault
@@ -111,6 +112,7 @@ object dbform: Tdbform
     end
   end
   object vydaj: TFDTable
+    Active = True
     IndexFieldNames = 'id'
     Connection = FDConnection1
     UpdateOptions.UpdateTableName = 'kassa.vydaj'
@@ -168,18 +170,21 @@ object dbform: Tdbform
       FieldName = 'firma'
       Origin = 'firma'
       BlobType = ftMemo
+      DisplayValue = dvFull
     end
     object nastavenieadresa: TMemoField
       AutoGenerateValue = arDefault
       FieldName = 'adresa'
       Origin = 'adresa'
       BlobType = ftMemo
+      DisplayValue = dvFull
     end
     object nastaveniemesto: TMemoField
       AutoGenerateValue = arDefault
       FieldName = 'mesto'
       Origin = 'mesto'
       BlobType = ftMemo
+      DisplayValue = dvFull
     end
     object nastaveniepsc: TIntegerField
       AutoGenerateValue = arDefault
@@ -201,6 +206,7 @@ object dbform: Tdbform
       FieldName = 'icdph'
       Origin = 'icdph'
       BlobType = ftMemo
+      DisplayValue = dvFull
     end
     object nastaveniedkp: TIntegerField
       AutoGenerateValue = arDefault
@@ -257,6 +263,7 @@ object dbform: Tdbform
       FieldName = 'nazov'
       Origin = 'nazov'
       BlobType = ftMemo
+      DisplayValue = dvFull
     end
     object predajkacenacelkom: TSingleField
       AutoGenerateValue = arDefault
@@ -288,6 +295,11 @@ object dbform: Tdbform
       FieldName = 'odoslanedatum'
       Origin = 'odoslanedatum'
     end
+    object predajkavystavene: TIntegerField
+      AutoGenerateValue = arDefault
+      FieldName = 'vystavene'
+      Origin = 'vystavene'
+    end
   end
   object partner: TFDTable
     Active = True
@@ -308,6 +320,7 @@ object dbform: Tdbform
       FieldName = 'firma'
       Origin = 'firma'
       BlobType = ftMemo
+      DisplayValue = dvFull
     end
     object partnerico: TIntegerField
       AutoGenerateValue = arDefault
@@ -324,12 +337,14 @@ object dbform: Tdbform
       FieldName = 'icdph'
       Origin = 'icdph'
       BlobType = ftMemo
+      DisplayValue = dvFull
     end
     object partneradresa: TMemoField
       AutoGenerateValue = arDefault
       FieldName = 'adresa'
       Origin = 'adresa'
       BlobType = ftMemo
+      DisplayValue = dvFull
     end
     object partnerpsc: TIntegerField
       AutoGenerateValue = arDefault

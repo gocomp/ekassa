@@ -1,7 +1,8 @@
 object Form1: TForm1
   Left = 0
   Top = 0
-  Caption = 'Form1'
+  BorderIcons = [biMinimize, biMaximize]
+  Caption = 'Lite-Kassa'
   ClientHeight = 764
   ClientWidth = 1165
   Color = clBtnFace
@@ -11,6 +12,7 @@ object Form1: TForm1
   Font.Name = 'Tahoma'
   Font.Style = []
   OldCreateOrder = False
+  Position = poDesktopCenter
   DesignSize = (
     1165
     764)
@@ -28,10 +30,8 @@ object Form1: TForm1
     MultiLine = True
     ParentDoubleBuffered = False
     TabOrder = 0
-    ExplicitHeight = 761
     object TabSheet1: TTabSheet
       Caption = 'Predaj'
-      ExplicitHeight = 733
       object Panel1: TPanel
         Left = 0
         Top = 0
@@ -40,7 +40,6 @@ object Form1: TForm1
         Align = alLeft
         Caption = 'Panel1'
         TabOrder = 0
-        ExplicitHeight = 600
         DesignSize = (
           385
           603)
@@ -59,7 +58,6 @@ object Form1: TForm1
           Font.Style = [fsBold]
           ParentFont = False
           TabOrder = 0
-          ExplicitTop = 535
         end
         object RzDBGrid1: TRzDBGrid
           Left = 1
@@ -115,7 +113,6 @@ object Form1: TForm1
           Font.Style = [fsBold]
           ParentFont = False
           TabOrder = 2
-          ExplicitTop = 536
         end
         object StaticText1: TStaticText
           Left = 16
@@ -131,12 +128,11 @@ object Form1: TForm1
           Font.Style = [fsBold]
           ParentFont = False
           TabOrder = 3
-          ExplicitTop = 408
         end
         object StaticText2: TStaticText
           Left = 71
           Top = 442
-          Width = 261
+          Width = 265
           Height = 83
           Anchors = [akLeft, akRight, akBottom]
           Caption = '1 000.00'
@@ -147,7 +143,6 @@ object Form1: TForm1
           Font.Style = [fsBold]
           ParentFont = False
           TabOrder = 4
-          ExplicitTop = 439
         end
       end
       object Panel2: TPanel
@@ -158,7 +153,6 @@ object Form1: TForm1
         Align = alClient
         Caption = 'Panel2'
         TabOrder = 1
-        ExplicitHeight = 600
         object RzDBGrid2: TRzDBGrid
           Left = 1
           Top = 1
@@ -172,6 +166,7 @@ object Form1: TForm1
           TitleFont.Height = -11
           TitleFont.Name = 'Tahoma'
           TitleFont.Style = []
+          OnDblClick = RzDBGrid2DblClick
           AltRowShading = True
         end
       end
@@ -181,45 +176,61 @@ object Form1: TForm1
         Width = 1157
         Height = 133
         Align = alBottom
-        Caption = 'Panel3'
         TabOrder = 2
-        ExplicitTop = 600
+        ExplicitTop = 608
+        DesignSize = (
+          1157
+          133)
+        object RzButton1: TRzButton
+          Left = 1016
+          Top = 72
+          Width = 131
+          Height = 53
+          Default = True
+          Anchors = [akRight, akBottom]
+          Caption = 'Ukoncit'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -27
+          Font.Name = 'Tahoma'
+          Font.Style = [fsBold]
+          ParentFont = False
+          TabOrder = 0
+          OnClick = RzButton1Click
+        end
       end
     end
     object TabSheet4: TTabSheet
       Caption = 'Vydaj'
       ImageIndex = 3
-      ExplicitHeight = 733
     end
     object TabSheet5: TTabSheet
       Caption = 'Prijem'
       ImageIndex = 4
-      ExplicitHeight = 733
     end
     object TabSheet2: TTabSheet
       Caption = 'Skladove karty'
       ImageIndex = 1
-      ExplicitHeight = 733
     end
     object TabSheet3: TTabSheet
       Caption = 'Nastavenie'
       ImageIndex = 2
-      ExplicitHeight = 733
     end
   end
   object predaj: TPanel
-    Left = 432
-    Top = 147
+    Left = 504
+    Top = 181
     Width = 369
     Height = 353
     Anchors = [akLeft]
     TabOrder = 1
+    Visible = False
     DesignSize = (
       369
       353)
     object vystavit: TRzButton
       Left = 192
-      Top = 264
+      Top = 263
       Width = 161
       Height = 81
       Default = True
@@ -335,6 +346,124 @@ object Form1: TForm1
       Font.Style = [fsBold]
       ParentFont = False
       TabOrder = 7
+    end
+  end
+  object vyber: TPanel
+    Left = 512
+    Top = 244
+    Width = 353
+    Height = 224
+    TabOrder = 2
+    Visible = False
+    DesignSize = (
+      353
+      224)
+    object vynazov: TDBText
+      Left = 16
+      Top = 10
+      Width = 329
+      Height = 33
+      BiDiMode = bdRightToLeft
+      DataField = 'nazov'
+      DataSource = dbform.DSklad
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -21
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentBiDiMode = False
+      ParentFont = False
+    end
+    object RzButton2: TRzButton
+      Left = 199
+      Top = 144
+      Width = 145
+      Height = 72
+      Default = True
+      Caption = 'Dalej'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -27
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      ParentFont = False
+      TabOrder = 0
+    end
+    object RzButton3: TRzButton
+      Left = 15
+      Top = 160
+      Width = 115
+      Height = 50
+      Caption = 'Spat'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -16
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      ParentFont = False
+      TabOrder = 1
+    end
+    object StaticText7: TStaticText
+      Left = 196
+      Top = 49
+      Width = 58
+      Height = 33
+      Anchors = [akLeft, akRight, akBottom]
+      Caption = 'Kus:'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -24
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      ParentFont = False
+      TabOrder = 2
+    end
+    object vkus: TMaskEdit
+      Left = 260
+      Top = 49
+      Width = 85
+      Height = 31
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -19
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+      TabOrder = 3
+      Text = ''
+      OnChange = vkusChange
+    end
+    object ptcelkom: TStaticText
+      Left = 118
+      Top = 105
+      Width = 82
+      Height = 27
+      Anchors = [akLeft, akRight, akBottom]
+      Caption = 'Celkom:'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -19
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      ParentFont = False
+      TabOrder = 4
+    end
+    object pcelkom: TStaticText
+      Left = 206
+      Top = 99
+      Width = 138
+      Height = 33
+      Alignment = taRightJustify
+      Anchors = [akLeft, akRight, akBottom]
+      AutoSize = False
+      Caption = '0.00'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -24
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      ParentFont = False
+      TabOrder = 5
     end
   end
   object JvEnterAsTab1: TJvEnterAsTab

@@ -46,6 +46,7 @@ type
     vynazov: TDBText;
     procedure RzButton1Click(Sender: TObject);
     procedure vkusChange(Sender: TObject);
+    procedure RzDBGrid2DblClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -61,9 +62,15 @@ implementation
 
 uses db;
 
+procedure TForm1.RzDBGrid2DblClick(Sender: TObject);
+begin
+vyber.Visible:=true;
+vkus.SetFocus;
+end;
+
 procedure TForm1.vkusChange(Sender: TObject);
 begin
-pcelkom.Caption:= floattostr(dbform.skladcena.Value*strtoint(vkus.Text));
+pcelkom.Caption:= floattostr(dbform.skladcena.value*strtoint(vkus.Text));
 end;
 
 procedure TForm1.RzButton1Click(Sender: TObject);

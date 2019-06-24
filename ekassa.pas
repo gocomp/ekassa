@@ -10,7 +10,6 @@ uses
 
 type
   TForm1 = class(TForm)
-    JvEnterAsTab1: TJvEnterAsTab;
     PageControl1: TPageControl;
     TabSheet1: TTabSheet;
     TabSheet2: TTabSheet;
@@ -47,6 +46,10 @@ type
     procedure RzButton1Click(Sender: TObject);
     procedure vkusChange(Sender: TObject);
     procedure RzDBGrid2DblClick(Sender: TObject);
+    procedure vkusKeyPress(Sender: TObject; var Key: Char);
+    procedure RzButton3Click(Sender: TObject);
+    procedure RzButton2Click(Sender: TObject);
+    procedure RzDBGrid2KeyPress(Sender: TObject; var Key: Char);
   private
     { Private declarations }
   public
@@ -62,15 +65,45 @@ implementation
 
 uses db;
 
+procedure TForm1.RzButton2Click(Sender: TObject);
+begin
+vyber.Visible:=false;
+RzDBGrid2.SetFocus;
+end;
+
+procedure TForm1.RzButton3Click(Sender: TObject);
+begin
+vyber.Visible:=false;
+RzDBGrid2.SetFocus;
+end;
+
 procedure TForm1.RzDBGrid2DblClick(Sender: TObject);
 begin
 vyber.Visible:=true;
 vkus.SetFocus;
 end;
 
+procedure TForm1.RzDBGrid2KeyPress(Sender: TObject; var Key: Char);
+begin
+   if Key=#13 then
+      RzDBGrid2DblClick(sender);
+
+end;
+
 procedure TForm1.vkusChange(Sender: TObject);
 begin
-pcelkom.Caption:= floattostr(dbform.skladcena.value*strtoint(vkus.Text));
+pcelkom.Caption:=floattostrf(dbform.skladcena.value*strtoint(vkus.Text), ffCurrency, 8, 4);
+//floattostr(dbform.skladcena.value*strtoint(vkus.Text));
+end;
+
+procedure TForm1.vkusKeyPress(Sender: TObject; var Key: Char);
+begin
+if Key=#13 then
+RzButton2.Click;
+
+if Key=#27 then
+RzButton3.Click;
+
 end;
 
 procedure TForm1.RzButton1Click(Sender: TObject);

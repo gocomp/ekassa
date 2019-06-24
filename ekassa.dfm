@@ -167,6 +167,7 @@ object Form1: TForm1
           TitleFont.Name = 'Tahoma'
           TitleFont.Style = []
           OnDblClick = RzDBGrid2DblClick
+          OnKeyPress = RzDBGrid2KeyPress
           AltRowShading = True
         end
       end
@@ -177,7 +178,6 @@ object Form1: TForm1
         Height = 133
         Align = alBottom
         TabOrder = 2
-        ExplicitTop = 608
         DesignSize = (
           1157
           133)
@@ -186,7 +186,6 @@ object Form1: TForm1
           Top = 72
           Width = 131
           Height = 53
-          Default = True
           Anchors = [akRight, akBottom]
           Caption = 'Ukoncit'
           Font.Charset = DEFAULT_CHARSET
@@ -233,7 +232,6 @@ object Form1: TForm1
       Top = 263
       Width = 161
       Height = 81
-      Default = True
       Caption = 'Vystavit'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
@@ -376,10 +374,9 @@ object Form1: TForm1
     end
     object RzButton2: TRzButton
       Left = 199
-      Top = 144
+      Top = 146
       Width = 145
       Height = 72
-      Default = True
       Caption = 'Dalej'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
@@ -388,6 +385,7 @@ object Form1: TForm1
       Font.Style = [fsBold]
       ParentFont = False
       TabOrder = 0
+      OnClick = RzButton2Click
     end
     object RzButton3: TRzButton
       Left = 15
@@ -402,11 +400,12 @@ object Form1: TForm1
       Font.Style = [fsBold]
       ParentFont = False
       TabOrder = 1
+      OnClick = RzButton3Click
     end
     object StaticText7: TStaticText
       Left = 196
       Top = 49
-      Width = 58
+      Width = 57
       Height = 33
       Anchors = [akLeft, akRight, akBottom]
       Caption = 'Kus:'
@@ -432,6 +431,7 @@ object Form1: TForm1
       TabOrder = 3
       Text = ''
       OnChange = vkusChange
+      OnKeyPress = vkusKeyPress
     end
     object ptcelkom: TStaticText
       Left = 118
@@ -465,9 +465,5 @@ object Form1: TForm1
       ParentFont = False
       TabOrder = 5
     end
-  end
-  object JvEnterAsTab1: TJvEnterAsTab
-    Left = 752
-    Top = 504
   end
 end

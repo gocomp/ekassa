@@ -66,7 +66,8 @@ object Form1: TForm1
           Height = 404
           Align = alTop
           Anchors = [akLeft, akTop, akRight, akBottom]
-          DataSource = dbform.DVydaj
+          DataSource = dbform.dtemp
+          Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgConfirmDelete, dgCancelOnExit, dgTitleClick, dgTitleHotTrack]
           TabOrder = 1
           TitleFont.Charset = DEFAULT_CHARSET
           TitleFont.Color = clWindowText
@@ -79,23 +80,32 @@ object Form1: TForm1
           Columns = <
             item
               Expanded = False
+              FieldName = 'id'
+              Width = 23
+              Visible = True
+            end
+            item
+              Expanded = False
               FieldName = 'nazov'
-              Title.Caption = 'Tovar'
-              Width = 139
+              Width = 146
               Visible = True
             end
             item
               Expanded = False
               FieldName = 'kus'
-              Title.Caption = 'Kus'
-              Width = 48
+              Width = 29
               Visible = True
             end
             item
               Expanded = False
               FieldName = 'cena'
-              Title.Caption = 'Cena'
-              Width = 94
+              Width = 73
+              Visible = True
+            end
+            item
+              Expanded = False
+              FieldName = 'cenacelkom'
+              Width = 86
               Visible = True
             end>
         end
@@ -113,6 +123,7 @@ object Form1: TForm1
           Font.Style = [fsBold]
           ParentFont = False
           TabOrder = 2
+          OnClick = vymazClick
         end
         object StaticText1: TStaticText
           Left = 16
@@ -129,9 +140,9 @@ object Form1: TForm1
           ParentFont = False
           TabOrder = 3
         end
-        object StaticText2: TStaticText
-          Left = 71
-          Top = 442
+        object Celkomcena: TStaticText
+          Left = 79
+          Top = 449
           Width = 265
           Height = 83
           Anchors = [akLeft, akRight, akBottom]
@@ -160,12 +171,15 @@ object Form1: TForm1
           Height = 601
           Align = alClient
           DataSource = dbform.DSklad
+          Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgConfirmDelete, dgCancelOnExit, dgTitleClick, dgTitleHotTrack]
           TabOrder = 0
           TitleFont.Charset = DEFAULT_CHARSET
           TitleFont.Color = clWindowText
           TitleFont.Height = -11
           TitleFont.Name = 'Tahoma'
           TitleFont.Style = []
+          OnDblClick = RzDBGrid2DblClick
+          OnKeyPress = RzDBGrid2KeyPress
           AltRowShading = True
         end
       end
@@ -176,7 +190,6 @@ object Form1: TForm1
         Height = 133
         Align = alBottom
         TabOrder = 2
-        ExplicitTop = 608
         DesignSize = (
           1157
           133)
@@ -185,7 +198,6 @@ object Form1: TForm1
           Top = 72
           Width = 131
           Height = 53
-          Default = True
           Anchors = [akRight, akBottom]
           Caption = 'Ukoncit'
           Font.Charset = DEFAULT_CHARSET
@@ -232,7 +244,6 @@ object Form1: TForm1
       Top = 263
       Width = 161
       Height = 81
-      Default = True
       Caption = 'Vystavit'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
@@ -348,20 +359,20 @@ object Form1: TForm1
     end
   end
   object vyber: TPanel
-    Left = 481
-    Top = 244
-    Width = 408
-    Height = 176
+    Left = 512
+    Top = 186
+    Width = 353
+    Height = 279
     TabOrder = 2
+    Visible = False
     DesignSize = (
-      408
-      176)
+      353
+      279)
     object RzButton2: TRzButton
-      Left = 248
-      Top = 79
+      Left = 198
+      Top = 201
       Width = 145
-      Height = 81
-      Default = True
+      Height = 72
       Caption = 'Dalej'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
@@ -369,11 +380,12 @@ object Form1: TForm1
       Font.Name = 'Tahoma'
       Font.Style = [fsBold]
       ParentFont = False
-      TabOrder = 0
+      TabOrder = 8
+      OnClick = RzButton2Click
     end
     object RzButton3: TRzButton
-      Left = 127
-      Top = 111
+      Left = 15
+      Top = 215
       Width = 115
       Height = 50
       Caption = 'Spat'
@@ -383,26 +395,13 @@ object Form1: TForm1
       Font.Name = 'Tahoma'
       Font.Style = [fsBold]
       ParentFont = False
-      TabOrder = 1
-    end
-    object vynazov: TStaticText
-      Left = 24
-      Top = 16
-      Width = 102
-      Height = 33
-      Anchors = [akLeft, akRight, akBottom]
-      Caption = 'Celkom:'
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWindowText
-      Font.Height = -24
-      Font.Name = 'Tahoma'
-      Font.Style = [fsBold]
-      ParentFont = False
-      TabOrder = 2
+      TabOrder = 0
+      TabStop = False
+      OnClick = RzButton3Click
     end
     object StaticText7: TStaticText
-      Left = 32
-      Top = 55
+      Left = 196
+      Top = 49
       Width = 57
       Height = 33
       Anchors = [akLeft, akRight, akBottom]
@@ -413,21 +412,111 @@ object Form1: TForm1
       Font.Name = 'Tahoma'
       Font.Style = [fsBold]
       ParentFont = False
+      TabOrder = 1
+    end
+    object vkus: TMaskEdit
+      Left = 259
+      Top = 51
+      Width = 85
+      Height = 31
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -19
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+      TabOrder = 6
+      Text = ''
+      OnChange = vkusChange
+      OnKeyPress = vkusKeyPress
+    end
+    object ptcelkom: TStaticText
+      Left = 118
+      Top = 160
+      Width = 82
+      Height = 27
+      Anchors = [akLeft, akRight, akBottom]
+      Caption = 'Celkom:'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -19
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      ParentFont = False
+      TabOrder = 2
+      ExplicitTop = 105
+    end
+    object pcelkom: TStaticText
+      Left = 206
+      Top = 143
+      Width = 138
+      Height = 44
+      Alignment = taRightJustify
+      Anchors = [akLeft, akRight, akBottom]
+      AutoSize = False
+      Caption = '0.00'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -32
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      ParentFont = False
       TabOrder = 3
+      ExplicitTop = 88
     end
-    object MaskEdit1: TMaskEdit
-      Left = 132
-      Top = 19
-      Width = 244
-      Height = 33
-      EditMask = '!99999;1;'
-      MaxLength = 5
+    object vyuloz: TCheckBox
+      Left = 15
+      Top = 45
+      Width = 97
+      Height = 17
+      TabStop = False
+      Caption = 'Ulozit produkt'
       TabOrder = 4
-      Text = '     '
     end
-  end
-  object JvEnterAsTab1: TJvEnterAsTab
-    Left = 752
-    Top = 504
+    object vynazov: TRzEdit
+      Left = 8
+      Top = 8
+      Width = 337
+      Height = 31
+      Text = ''
+      Alignment = taRightJustify
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -19
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+      TabOrder = 5
+    end
+    object vcena: TMaskEdit
+      Left = 259
+      Top = 99
+      Width = 85
+      Height = 31
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -19
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+      TabOrder = 7
+      Text = ''
+      OnChange = vcenaChange
+    end
+    object StaticText6: TStaticText
+      Left = 181
+      Top = 99
+      Width = 72
+      Height = 33
+      Anchors = [akLeft, akRight, akBottom]
+      Caption = 'Cena:'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -24
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      ParentFont = False
+      TabOrder = 9
+    end
   end
 end

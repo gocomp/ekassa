@@ -22,7 +22,7 @@ type
     RzDBGrid1: TRzDBGrid;
     vymaz: TRzButton;
     StaticText1: TStaticText;
-    Celkomcena: TStaticText;
+    StaticText2: TStaticText;
     RzDBGrid2: TRzDBGrid;
     Panel3: TPanel;
     predaj: TPanel;
@@ -54,12 +54,7 @@ type
     procedure RzButton2Click(Sender: TObject);
     procedure RzDBGrid2KeyPress(Sender: TObject; var Key: Char);
     procedure vcenaChange(Sender: TObject);
-    procedure vymazClick(Sender: TObject);
-    procedure FormCreate(Sender: TObject);
-    procedure vynazovKeyPress(Sender: TObject; var Key: Char);
-    procedure vcenaKeyPress(Sender: TObject; var Key: Char);
   private
-     ccena :double;
     { Private declarations }
   public
     { Public declarations }
@@ -67,7 +62,6 @@ type
 
 var
   Form1: TForm1;
-
 
 implementation
 
@@ -80,24 +74,11 @@ begin
 dbform.dbtemp.append;
 dbform.dbtempnazov.Value:=vynazov.Text;
 dbform.dbtempkus.Value:=strtoint(vkus.Text);
-dbform.dbtempcena.Value:=strtofloat(vcena.Text);
-dbform.dbtempcenacelkom.Value:=strtofloat(vcena.Text)*strtoint(vkus.Text);
-ccena:=ccena+dbform.dbtempcenacelkom.Value;
+dbform.dbtempcena.Value:=dbform.skladcena.Value;
+dbform.dbtempcenacelkom.Value:=dbform.skladcena.value*strtoint(vkus.Text);
 //dbform.dbtempdph.Value:=dbform.skladdph.Value;
 
 dbform.dbtemp.Post;
-if vyuloz.Checked then
-begin
-dbform.sklad.Append;
-dbform.skladnazov.Value:=vynazov.Text;
-dbform.skladcena.Value:=strtofloat(vcena.Text);
-dbform.skladdph.Value:=20;
-dbform.sklad.Post;
-dbform.sklad.Refresh;
-
-end;
-
-celkomcena.Caption:=floattostrf(ccena, ffCurrency, 8, 4);
 vyber.Visible:=false;
 RzDBGrid2.SetFocus;
 
@@ -134,15 +115,6 @@ if vyber.Visible then
 pcelkom.Caption:=floattostrf(strtofloat(vcena.Text)*strtoint(vkus.Text), ffCurrency, 8, 4);
 end;
 
-procedure TForm1.vcenaKeyPress(Sender: TObject; var Key: Char);
-begin
-if Key=#13 then
-RzButton2.Click;
-
-if Key=#27 then
-RzButton3.Click;
-end;
-
 procedure TForm1.vkusChange(Sender: TObject);
 begin
 if vyber.Visible then
@@ -158,25 +130,6 @@ RzButton2.Click;
 if Key=#27 then
 RzButton3.Click;
 
-end;
-
-procedure TForm1.vymazClick(Sender: TObject);
-begin
-dbform.dbtemp.Delete;
-end;
-
-procedure TForm1.vynazovKeyPress(Sender: TObject; var Key: Char);
-begin
-   if Key=#13 then
-    vkus.SetFocus;
-
-if Key=#27 then
-RzButton3.Click;
-end;
-
-procedure TForm1.FormCreate(Sender: TObject);
-begin
-ccena:=0;
 end;
 
 procedure TForm1.RzButton1Click(Sender: TObject);

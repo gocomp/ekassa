@@ -92,8 +92,8 @@ dbform.sklad.Append;
 dbform.skladnazov.Value:=vynazov.Text;
 dbform.skladcena.Value:=strtofloat(vcena.Text);
 dbform.skladdph.Value:=20;
+
 dbform.sklad.Post;
-dbform.sklad.Refresh;
 
 end;
 

@@ -59,6 +59,7 @@ object Form1: TForm1
           Font.Style = [fsBold]
           ParentFont = False
           TabOrder = 0
+          OnClick = predajbClick
         end
         object RzDBGrid1: TRzDBGrid
           Left = 1
@@ -144,7 +145,7 @@ object Form1: TForm1
         object Celkomcena: TStaticText
           Left = 79
           Top = 449
-          Width = 265
+          Width = 261
           Height = 83
           Anchors = [akLeft, akRight, akBottom]
           Caption = '1 000.00'
@@ -209,6 +210,15 @@ object Form1: TForm1
           ParentFont = False
           TabOrder = 0
           OnClick = RzButton1Click
+        end
+        object Memo1: TMemo
+          Left = 16
+          Top = 16
+          Width = 577
+          Height = 89
+          Lines.Strings = (
+            'Memo1')
+          TabOrder = 1
         end
       end
     end
@@ -445,7 +455,6 @@ object Form1: TForm1
       Font.Style = [fsBold]
       ParentFont = False
       TabOrder = 2
-      ExplicitTop = 105
     end
     object pcelkom: TStaticText
       Left = 206
@@ -463,7 +472,6 @@ object Form1: TForm1
       Font.Style = [fsBold]
       ParentFont = False
       TabOrder = 3
-      ExplicitTop = 88
     end
     object vyuloz: TCheckBox
       Left = 15
@@ -521,5 +529,29 @@ object Form1: TForm1
       ParentFont = False
       TabOrder = 9
     end
+  end
+  object RESTRequest1: TRESTRequest
+    Client = RESTClient1
+    Params = <
+      item
+        Name = 'state'
+      end>
+    Response = RESTResponse1
+    SynchronizedEvents = False
+    Left = 420
+    Top = 232
+  end
+  object RESTResponse1: TRESTResponse
+    ContentType = 'application/json'
+    Left = 436
+    Top = 176
+  end
+  object RESTClient1: TRESTClient
+    Accept = 'application/json, text/plain; q=0.9, text/html;q=0.8,'
+    AcceptCharset = 'utf-8, *;q=0.8'
+    BaseURL = 'http://localhost:3010/api/v1/connectivity/status'
+    Params = <>
+    Left = 436
+    Top = 120
   end
 end

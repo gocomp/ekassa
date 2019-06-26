@@ -1,0 +1,264 @@
+unit ekassa;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs,  Vcl.ExtCtrls, Data.DB, Vcl.Grids,
+  Vcl.DBGrids, Vcl.ComCtrls, JvComponentBase, JvEnterTab, RzButton,
+  Vcl.StdCtrls, RzDBGrid, Vcl.Mask, Vcl.DBCtrls, RzEdit,DateUtils,HTTPApp, IdHTTP, XMLDoc, XMLIntf, ActiveX  ;
+
+type
+  TForm1 = class(TForm)
+    PageControl1: TPageControl;
+    TabSheet1: TTabSheet;
+    TabSheet2: TTabSheet;
+    TabSheet3: TTabSheet;
+    TabSheet4: TTabSheet;
+    TabSheet5: TTabSheet;
+    Panel1: TPanel;
+    Panel2: TPanel;
+    predajb: TRzButton;
+    RzDBGrid1: TRzDBGrid;
+    vymaz: TRzButton;
+    StaticText1: TStaticText;
+    Celkomcena: TStaticText;
+    RzDBGrid2: TRzDBGrid;
+    Panel3: TPanel;
+    predaj: TPanel;
+    vystavit: TRzButton;
+    storno: TRzButton;
+    StaticText3: TStaticText;
+    StaticText4: TStaticText;
+    StaticText5: TStaticText;
+    Edit1: TEdit;
+    vratit: TStaticText;
+    celkomp: TStaticText;
+    RzButton1: TRzButton;
+    vyber: TPanel;
+    RzButton2: TRzButton;
+    RzButton3: TRzButton;
+    StaticText7: TStaticText;
+    vkus: TMaskEdit;
+    ptcelkom: TStaticText;
+    pcelkom: TStaticText;
+    vyuloz: TCheckBox;
+    vynazov: TRzEdit;
+    vcena: TMaskEdit;
+    StaticText6: TStaticText;
+    Memo1: TMemo;
+    procedure RzButton1Click(Sender: TObject);
+    procedure vkusChange(Sender: TObject);
+    procedure RzDBGrid2DblClick(Sender: TObject);
+    procedure vkusKeyPress(Sender: TObject; var Key: Char);
+    procedure RzButton3Click(Sender: TObject);
+    procedure RzButton2Click(Sender: TObject);
+    procedure RzDBGrid2KeyPress(Sender: TObject; var Key: Char);
+    procedure vcenaChange(Sender: TObject);
+    procedure vymazClick(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
+    procedure vynazovKeyPress(Sender: TObject; var Key: Char);
+    procedure vcenaKeyPress(Sender: TObject; var Key: Char);
+    procedure predajbClick(Sender: TObject);
+  private
+     ccena :double;
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  Form1: TForm1;
+
+
+implementation
+
+{$R *.dfm}
+
+uses db;
+
+procedure TForm1.RzButton2Click(Sender: TObject);
+begin
+dbform.dbtemp.append;
+dbform.dbtempnazov.Value:=vynazov.Text;
+dbform.dbtempkus.Value:=strtoint(vkus.Text);
+dbform.dbtempcena.Value:=strtofloat(vcena.Text);
+dbform.dbtempcenacelkom.Value:=strtofloat(vcena.Text)*strtoint(vkus.Text);
+ccena:=ccena+dbform.dbtempcenacelkom.Value;
+//dbform.dbtempdph.Value:=dbform.skladdph.Value;
+
+dbform.dbtemp.Post;
+if vyuloz.Checked then
+begin
+dbform.sklad.Append;
+dbform.skladnazov.Value:=vynazov.Text;
+dbform.skladcena.Value:=strtofloat(vcena.Text);
+dbform.skladdph.Value:=20;
+dbform.sklad.Post;
+dbform.sklad.Refresh;
+
+end;
+
+celkomcena.Caption:=floattostrf(ccena, ffCurrency, 8, 4);
+vyber.Visible:=false;
+RzDBGrid2.SetFocus;
+
+end;
+
+procedure TForm1.RzButton3Click(Sender: TObject);
+begin
+vyber.Visible:=false;
+RzDBGrid2.SetFocus;
+end;
+
+procedure TForm1.RzDBGrid2DblClick(Sender: TObject);
+begin
+
+vynazov.Text:=dbform.skladnazov.Value;
+vkus.Text:='1';
+vcena.Text:=floattostrf(dbform.skladcena.value, ffNumber, 8, 4);
+pcelkom.Caption:=floattostrf(dbform.skladcena.value*1, ffCurrency, 8, 4);
+vyber.Visible:=true;
+vkus.SetFocus;
+end;
+
+procedure TForm1.RzDBGrid2KeyPress(Sender: TObject; var Key: Char);
+begin
+   if Key=#13 then
+      RzDBGrid2DblClick(sender);
+
+end;
+
+procedure TForm1.vcenaChange(Sender: TObject);
+begin
+if vyber.Visible then
+
+pcelkom.Caption:=floattostrf(strtofloat(vcena.Text)*strtoint(vkus.Text), ffCurrency, 8, 4);
+end;
+
+procedure TForm1.vcenaKeyPress(Sender: TObject; var Key: Char);
+begin
+if Key=#13 then
+RzButton2.Click;
+
+if Key=#27 then
+RzButton3.Click;
+end;
+
+procedure TForm1.vkusChange(Sender: TObject);
+begin
+if vyber.Visible then
+pcelkom.Caption:=floattostrf(strtofloat(vcena.Text)*strtoint(vkus.Text), ffCurrency, 8, 4);
+//floattostr(dbform.skladcena.value*strtoint(vkus.Text));
+end;
+
+procedure TForm1.vkusKeyPress(Sender: TObject; var Key: Char);
+begin
+if Key=#13 then
+RzButton2.Click;
+
+if Key=#27 then
+RzButton3.Click;
+
+end;
+
+procedure TForm1.vymazClick(Sender: TObject);
+begin
+dbform.dbtemp.Delete;
+end;
+
+procedure TForm1.vynazovKeyPress(Sender: TObject; var Key: Char);
+begin
+   if Key=#13 then
+    vkus.SetFocus;
+
+if Key=#27 then
+RzButton3.Click;
+end;
+
+procedure TForm1.FormCreate(Sender: TObject);
+begin
+ccena:=0;
+end;
+
+procedure TForm1.predajbClick(Sender: TObject);
+var
+  CoResult: Integer;
+  HTTP: TIdHTTP;
+  Query: String;
+  Buffer: String;
+  Doc: IXMLDocument;
+  Node: IXMLNode;
+  ServerAddress:string;
+
+begin
+ServerAddress := 'http://localhost:3010';
+
+try
+    CoResult := CoInitializeEx(nil, COINIT_MULTITHREADED);
+
+    if not((CoResult = S_OK) or (CoResult = S_FALSE)) then
+    begin
+     // Writeln('Failed to initialize COM library.');
+      Exit;
+    end;
+    HTTP := TIdHTTP.Create;
+
+    // Build query
+    // For more information, see http://www.mediawiki.org/wiki/API:Query
+
+    Query := ServerAddress + '/api/v1/connectivity/status';
+        Buffer := HTTP.Get(Query);
+        Doc := TXMLDocument.Create(nil);
+         Doc.LoadFromXML(Buffer);
+         Memo1.Lines.Add(Doc.XML.Text);
+//         Writeln(Doc.XML.Text);
+        // Node := Doc.ChildNodes.FindNode('api');                                          '
+
+
+//      Query := ServerAddress + /api/v1/connectivity/status' +
+//      'action=query&prop=revisions&rvprop=content&format=xml&titles=' +
+//      String(HTTPEncode('Main Page'));
+    // HTTP GET request
+//    Buffer := HTTP.Get(Query);
+
+    // Create XML document
+//    Doc := TXMLDocument.Create(nil);
+
+    // Build XML document from HTTP response
+  //  Doc.LoadFromXML(Buffer);
+
+    // Display document content
+//    Writeln(Doc.XML.Text);
+
+    // Get main node
+  //  Node := Doc.ChildNodes.FindNode('api');
+
+
+
+    HTTP.Destroy;
+  except
+    on E: Exception do
+      //Writeln(E.ClassName, ': ', E.Message);
+  end;
+
+
+
+
+//dbform.predajka.Append;
+//dbform.predajkacenacelkom.Value :=strtofloat(Celkomcena.Caption);
+//dbform.predajkadatumcas.Value := now;
+//dbform.predajka.Post;
+
+
+
+
+end;
+
+procedure TForm1.RzButton1Click(Sender: TObject);
+begin
+dbform.FDConnection1.Close;
+close;
+end;
+
+end.

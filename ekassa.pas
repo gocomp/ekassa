@@ -6,7 +6,8 @@ uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs,  Vcl.ExtCtrls, Data.DB, Vcl.Grids,
   Vcl.DBGrids, Vcl.ComCtrls, JvComponentBase, JvEnterTab, RzButton,
-  Vcl.StdCtrls, RzDBGrid, Vcl.Mask, Vcl.DBCtrls, RzEdit;
+  Vcl.StdCtrls, RzDBGrid, Vcl.Mask, Vcl.DBCtrls, RzEdit,DateUtils,HTTPApp, IdHTTP, XMLDoc, XMLIntf, ActiveX,
+  REST.Types, REST.Client, Data.Bind.Components, Data.Bind.ObjectScope,System.JSON  ;
 
 type
   TForm1 = class(TForm)
@@ -46,6 +47,10 @@ type
     vynazov: TRzEdit;
     vcena: TMaskEdit;
     StaticText6: TStaticText;
+    Memo1: TMemo;
+    RESTRequest1: TRESTRequest;
+    RESTResponse1: TRESTResponse;
+    RESTClient1: TRESTClient;
     procedure RzButton1Click(Sender: TObject);
     procedure vkusChange(Sender: TObject);
     procedure RzDBGrid2DblClick(Sender: TObject);
@@ -58,6 +63,7 @@ type
     procedure FormCreate(Sender: TObject);
     procedure vynazovKeyPress(Sender: TObject; var Key: Char);
     procedure vcenaKeyPress(Sender: TObject; var Key: Char);
+    procedure predajbClick(Sender: TObject);
   private
      ccena :double;
     { Private declarations }
@@ -177,6 +183,62 @@ end;
 procedure TForm1.FormCreate(Sender: TObject);
 begin
 ccena:=0;
+end;
+
+procedure TForm1.predajbClick(Sender: TObject);
+var
+   dow: TIdHTTP;
+   xmlDoc: TXMLDocument;
+   xmlStrem: TMemoryStream;
+  jValue:TJSONValue;
+
+begin
+   dow := nil;
+   xmlDoc := nil;
+   xmlStrem := nil;
+   try
+      try
+       //  dow := TIdHTTP.Create(Self);
+       //  dow.HandleRedirects := True;
+      //   xmlStrem := TMemoryStream.Create();
+        // dow.Get('http://localhost:3010/api/v1/connectivity/status', xmlStrem);
+    //     xmlDoc := TXMLDocument.Create(Self);
+//         xmlDoc.LoadFromStream(xmlStrem);
+
+  RESTRequest1.Execute;
+
+  jValue:=RESTResponse1.JSONValue;
+  Memo1.Lines.Add(jvalue.FindValue('state').Value);
+
+
+
+     //    Memo1.Lines.Add(dow.Get('http://localhost:3010/api/v1/connectivity/status'));
+      //  Memo1.Lines.Add(xmlDoc.XML.Text);
+
+
+      except
+         on E: Exception do
+         begin
+            raise;
+         end;
+      end;
+   finally
+    if Assigned(dow) then FreeAndNil(dow);
+      if Assigned(xmlDoc) then FreeAndNil(xmlDoc);
+      if Assigned(xmlStrem) then FreeAndNil(xmlStrem);
+   end;
+
+
+
+
+//dbform.predajka.Append;
+//dbform.predajkacenacelkom.Value :=strtofloat(Celkomcena.Caption);
+//dbform.predajkadatumcas.Value := now;
+//dbform.predajka.Post;
+
+
+
+
 end;
 
 procedure TForm1.RzButton1Click(Sender: TObject);

@@ -7,7 +7,10 @@ uses
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs,  Vcl.ExtCtrls, Data.DB, Vcl.Grids,
   Vcl.DBGrids, Vcl.ComCtrls, JvComponentBase, JvEnterTab, RzButton,
   Vcl.StdCtrls, RzDBGrid, Vcl.Mask, Vcl.DBCtrls, RzEdit,DateUtils,HTTPApp, IdHTTP, XMLDoc, XMLIntf, ActiveX,
-  REST.Types, REST.Client, Data.Bind.Components, Data.Bind.ObjectScope,System.JSON  ;
+  REST.Types, REST.Client, Data.Bind.Components, Data.Bind.ObjectScope,System.JSON,
+  FireDAC.Stan.Intf, FireDAC.Stan.Option, FireDAC.Stan.Param,
+  FireDAC.Stan.Error, FireDAC.DatS, FireDAC.Phys.Intf, FireDAC.DApt.Intf,
+  FireDAC.Comp.DataSet, FireDAC.Comp.Client, REST.Response.Adapter  ;
 
 type
   TForm1 = class(TForm)
@@ -51,6 +54,24 @@ type
     RESTRequest1: TRESTRequest;
     RESTResponse1: TRESTResponse;
     RESTClient1: TRESTClient;
+    RESTClient2: TRESTClient;
+    RESTRequest2: TRESTRequest;
+    RESTResponse2: TRESTResponse;
+    RESTResponseDataSetAdapter1: TRESTResponseDataSetAdapter;
+    DBCertificat: TFDMemTable;
+    DBCertificatalias: TWideStringField;
+    DBCertificatcashRegisterCode: TWideStringField;
+    DBCertificatissueDate: TWideStringField;
+    DBCertificatexpirationDate: TWideStringField;
+    DBCertificatserialNumber: TWideStringField;
+    DBCertificatisExpired: TWideStringField;
+    FDMemTable1: TFDMemTable;
+    FDMemTable1dic: TWideStringField;
+    FDMemTable1ico: TWideStringField;
+    FDMemTable1icdph: TWideStringField;
+    FDMemTable1corporateBodyFullName: TWideStringField;
+    FDMemTable1organizationUnit: TWideStringField;
+    FDMemTable1physicalAddress: TWideStringField;
     procedure RzButton1Click(Sender: TObject);
     procedure vkusChange(Sender: TObject);
     procedure RzDBGrid2DblClick(Sender: TObject);
@@ -187,30 +208,35 @@ end;
 
 procedure TForm1.predajbClick(Sender: TObject);
 var
-   dow: TIdHTTP;
-   xmlDoc: TXMLDocument;
-   xmlStrem: TMemoryStream;
   jValue:TJSONValue;
+    jsResponse: TJSONValue;
+  jsRequest: TJSONObject;
 
 begin
-   dow := nil;
-   xmlDoc := nil;
-   xmlStrem := nil;
    try
       try
-       //  dow := TIdHTTP.Create(Self);
-       //  dow.HandleRedirects := True;
-      //   xmlStrem := TMemoryStream.Create();
-        // dow.Get('http://localhost:3010/api/v1/connectivity/status', xmlStrem);
-    //     xmlDoc := TXMLDocument.Create(Self);
-//         xmlDoc.LoadFromStream(xmlStrem);
+      RESTClient2.BaseURL:='http://213.160.191.53:3010/api/v1/certificates';
+      RESTResponseDataSetAdapter1.Dataset:=DBCertificat;
 
-  RESTRequest1.Execute;
+     RESTRequest2.Execute();
+     Memo1.Lines.Add(DBCertificatserialNumber.Value);
 
-  jValue:=RESTResponse1.JSONValue;
-  Memo1.Lines.Add(jvalue.FindValue('state').Value);
+      RESTClient2.BaseURL:='http://213.160.191.53:3010/api/v1/identities';
+      RESTResponseDataSetAdapter1.Dataset:=FDMemTable1;
 
+     RESTRequest2.Execute();
+     Memo1.Lines.Add(FDMemTable1ico.Value);
 
+//     obj := RESTResponse1.JSONValue as TJSONObject;
+//   data := obj.Values['data'] as TJSONObject;
+//   url := data.Values['url'].Value;
+
+  //jsResponse := RESTRequest1.JSONValue;
+
+        //   RESTClient1.BaseURL:='http://213.160.191.53:3010/api/v1/certificates';
+//            RESTRequest1.Execute;
+  //          jValue:=RESTResponse1.JSONValue;
+//          Memo1.Lines.Add('Internet pripojenie '+jvalue.FindValue('state').Value);
 
      //    Memo1.Lines.Add(dow.Get('http://localhost:3010/api/v1/connectivity/status'));
       //  Memo1.Lines.Add(xmlDoc.XML.Text);
@@ -223,9 +249,7 @@ begin
          end;
       end;
    finally
-    if Assigned(dow) then FreeAndNil(dow);
-      if Assigned(xmlDoc) then FreeAndNil(xmlDoc);
-      if Assigned(xmlStrem) then FreeAndNil(xmlStrem);
+ 
    end;
 
 

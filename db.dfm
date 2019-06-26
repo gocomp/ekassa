@@ -357,7 +357,8 @@ object dbform: Tdbform
       Origin = 'zlava'
     end
   end
-  object FDMemTable1: TFDMemTable
+  object dbtemp: TFDMemTable
+    Active = True
     FetchOptions.AssignedValues = [evMode]
     FetchOptions.Mode = fmAll
     ResourceOptions.AssignedValues = [rvSilentMode]
@@ -367,5 +368,29 @@ object dbform: Tdbform
     UpdateOptions.AutoCommitUpdates = True
     Left = 624
     Top = 72
+    object dbtempid: TIntegerField
+      FieldName = 'id'
+    end
+    object dbtempnazov: TStringField
+      FieldName = 'nazov'
+      Size = 50
+    end
+    object dbtempkus: TIntegerField
+      FieldName = 'kus'
+    end
+    object dbtempcena: TCurrencyField
+      FieldName = 'cena'
+    end
+    object dbtempcenacelkom: TCurrencyField
+      FieldName = 'cenacelkom'
+    end
+    object dbtempdph: TIntegerField
+      FieldName = 'dph'
+    end
+  end
+  object dtemp: TDataSource
+    DataSet = dbtemp
+    Left = 624
+    Top = 24
   end
 end

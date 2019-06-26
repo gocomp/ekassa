@@ -6,7 +6,7 @@ uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs,  Vcl.ExtCtrls, Data.DB, Vcl.Grids,
   Vcl.DBGrids, Vcl.ComCtrls, JvComponentBase, JvEnterTab, RzButton,
-  Vcl.StdCtrls, RzDBGrid, Vcl.Mask, Vcl.DBCtrls;
+  Vcl.StdCtrls, RzDBGrid, Vcl.Mask, Vcl.DBCtrls, RzEdit;
 
 type
   TForm1 = class(TForm)
@@ -22,7 +22,7 @@ type
     RzDBGrid1: TRzDBGrid;
     vymaz: TRzButton;
     StaticText1: TStaticText;
-    StaticText2: TStaticText;
+    Celkomcena: TStaticText;
     RzDBGrid2: TRzDBGrid;
     Panel3: TPanel;
     predaj: TPanel;
@@ -42,7 +42,10 @@ type
     vkus: TMaskEdit;
     ptcelkom: TStaticText;
     pcelkom: TStaticText;
-    vynazov: TDBText;
+    vyuloz: TCheckBox;
+    vynazov: TRzEdit;
+    vcena: TMaskEdit;
+    StaticText6: TStaticText;
     procedure RzButton1Click(Sender: TObject);
     procedure vkusChange(Sender: TObject);
     procedure RzDBGrid2DblClick(Sender: TObject);
@@ -50,7 +53,13 @@ type
     procedure RzButton3Click(Sender: TObject);
     procedure RzButton2Click(Sender: TObject);
     procedure RzDBGrid2KeyPress(Sender: TObject; var Key: Char);
+    procedure vcenaChange(Sender: TObject);
+    procedure vymazClick(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
+    procedure vynazovKeyPress(Sender: TObject; var Key: Char);
+    procedure vcenaKeyPress(Sender: TObject; var Key: Char);
   private
+     ccena :double;
     { Private declarations }
   public
     { Public declarations }
@@ -58,6 +67,7 @@ type
 
 var
   Form1: TForm1;
+
 
 implementation
 
@@ -67,8 +77,30 @@ uses db;
 
 procedure TForm1.RzButton2Click(Sender: TObject);
 begin
+dbform.dbtemp.append;
+dbform.dbtempnazov.Value:=vynazov.Text;
+dbform.dbtempkus.Value:=strtoint(vkus.Text);
+dbform.dbtempcena.Value:=strtofloat(vcena.Text);
+dbform.dbtempcenacelkom.Value:=strtofloat(vcena.Text)*strtoint(vkus.Text);
+ccena:=ccena+dbform.dbtempcenacelkom.Value;
+//dbform.dbtempdph.Value:=dbform.skladdph.Value;
+
+dbform.dbtemp.Post;
+if vyuloz.Checked then
+begin
+dbform.sklad.Append;
+dbform.skladnazov.Value:=vynazov.Text;
+dbform.skladcena.Value:=strtofloat(vcena.Text);
+dbform.skladdph.Value:=20;
+dbform.sklad.Post;
+dbform.sklad.Refresh;
+
+end;
+
+celkomcena.Caption:=floattostrf(ccena, ffCurrency, 8, 4);
 vyber.Visible:=false;
 RzDBGrid2.SetFocus;
+
 end;
 
 procedure TForm1.RzButton3Click(Sender: TObject);
@@ -79,6 +111,11 @@ end;
 
 procedure TForm1.RzDBGrid2DblClick(Sender: TObject);
 begin
+
+vynazov.Text:=dbform.skladnazov.Value;
+vkus.Text:='1';
+vcena.Text:=floattostrf(dbform.skladcena.value, ffNumber, 8, 4);
+pcelkom.Caption:=floattostrf(dbform.skladcena.value*1, ffCurrency, 8, 4);
 vyber.Visible:=true;
 vkus.SetFocus;
 end;
@@ -90,9 +127,26 @@ begin
 
 end;
 
+procedure TForm1.vcenaChange(Sender: TObject);
+begin
+if vyber.Visible then
+
+pcelkom.Caption:=floattostrf(strtofloat(vcena.Text)*strtoint(vkus.Text), ffCurrency, 8, 4);
+end;
+
+procedure TForm1.vcenaKeyPress(Sender: TObject; var Key: Char);
+begin
+if Key=#13 then
+RzButton2.Click;
+
+if Key=#27 then
+RzButton3.Click;
+end;
+
 procedure TForm1.vkusChange(Sender: TObject);
 begin
-pcelkom.Caption:=floattostrf(dbform.skladcena.value*strtoint(vkus.Text), ffCurrency, 8, 4);
+if vyber.Visible then
+pcelkom.Caption:=floattostrf(strtofloat(vcena.Text)*strtoint(vkus.Text), ffCurrency, 8, 4);
 //floattostr(dbform.skladcena.value*strtoint(vkus.Text));
 end;
 
@@ -104,6 +158,25 @@ RzButton2.Click;
 if Key=#27 then
 RzButton3.Click;
 
+end;
+
+procedure TForm1.vymazClick(Sender: TObject);
+begin
+dbform.dbtemp.Delete;
+end;
+
+procedure TForm1.vynazovKeyPress(Sender: TObject; var Key: Char);
+begin
+   if Key=#13 then
+    vkus.SetFocus;
+
+if Key=#27 then
+RzButton3.Click;
+end;
+
+procedure TForm1.FormCreate(Sender: TObject);
+begin
+ccena:=0;
 end;
 
 procedure TForm1.RzButton1Click(Sender: TObject);

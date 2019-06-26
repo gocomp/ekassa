@@ -28,7 +28,7 @@ type
     prijem: TFDTable;
     predajka: TFDTable;
     partner: TFDTable;
-    FDMemTable1: TFDMemTable;
+    dbtemp: TFDMemTable;
     skladid: TFDAutoIncField;
     skladnazov: TMemoField;
     skladcena: TSingleField;
@@ -69,6 +69,13 @@ type
     vydajdph: TIntegerField;
     vydajkus: TIntegerField;
     predajkavystavene: TIntegerField;
+    dbtempid: TIntegerField;
+    dbtempnazov: TStringField;
+    dbtempkus: TIntegerField;
+    dbtempcena: TCurrencyField;
+    dbtempcenacelkom: TCurrencyField;
+    dbtempdph: TIntegerField;
+    dtemp: TDataSource;
   private
     { Private declarations }
   public

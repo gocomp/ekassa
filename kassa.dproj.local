@@ -5,17 +5,17 @@
     <Transaction>2019/05/21 01:13:46.000.924,=C:\Users\GJOE\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
     <Transaction>2019/06/20 23:06:19.000.080,=C:\Users\GJOE\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
     <Transaction>2019/06/20 23:09:30.000.383,=C:\Users\GJOE\Documents\Embarcadero\Studio\Projects\Unit2.pas</Transaction>
-    <Transaction>2019/06/20 23:09:38.000.857,C:\Users\GJOE\Documents\Embarcadero\Studio\Projects\Unit2.pas=C:\Users\GJOE\Documents\Embarcadero\Studio\Projects\db.pas</Transaction>
-    <Transaction>2019/06/20 23:09:38.000.857,C:\Users\GJOE\Documents\Embarcadero\Studio\Projects\Unit2.dfm=C:\Users\GJOE\Documents\Embarcadero\Studio\Projects\db.dfm</Transaction>
+    <Transaction>2019/06/20 23:09:38.000.857,C:\Users\GJOE\Documents\Embarcadero\Studio\Projects\db.dfm=C:\Users\GJOE\Documents\Embarcadero\Studio\Projects\Unit2.dfm</Transaction>
+    <Transaction>2019/06/20 23:09:38.000.857,C:\Users\GJOE\Documents\Embarcadero\Studio\Projects\db.pas=C:\Users\GJOE\Documents\Embarcadero\Studio\Projects\Unit2.pas</Transaction>
     <Transaction>2019/06/20 23:10:44.000.020,=C:\Users\GJOE\Documents\Embarcadero\Studio\Projects\Unit3.pas</Transaction>
-    <Transaction>2019/06/20 23:11:01.000.728,C:\Users\GJOE\Documents\Embarcadero\Studio\Projects\Unit3.dfm=C:\Users\GJOE\Documents\Embarcadero\Studio\Projects\report.dfm</Transaction>
-    <Transaction>2019/06/20 23:11:01.000.728,C:\Users\GJOE\Documents\Embarcadero\Studio\Projects\Unit3.pas=C:\Users\GJOE\Documents\Embarcadero\Studio\Projects\report.pas</Transaction>
-    <Transaction>2019/06/20 23:56:35.000.351,C:\Users\GJOE\Documents\Embarcadero\Studio\Projects\report.pas=C:\ekassa\report.pas</Transaction>
-    <Transaction>2019/06/20 23:56:35.000.351,C:\Users\GJOE\Documents\Embarcadero\Studio\Projects\report.dfm=C:\ekassa\report.dfm</Transaction>
-    <Transaction>2019/06/20 23:56:37.000.201,C:\Users\GJOE\Documents\Embarcadero\Studio\Projects\db.dfm=C:\ekassa\db.dfm</Transaction>
-    <Transaction>2019/06/20 23:56:37.000.201,C:\Users\GJOE\Documents\Embarcadero\Studio\Projects\db.pas=C:\ekassa\db.pas</Transaction>
-    <Transaction>2019/06/20 23:56:46.000.872,C:\Users\GJOE\Documents\Embarcadero\Studio\Projects\Unit1.dfm=C:\ekassa\ekassa.dfm</Transaction>
-    <Transaction>2019/06/20 23:56:46.000.872,C:\Users\GJOE\Documents\Embarcadero\Studio\Projects\Unit1.pas=C:\ekassa\ekassa.pas</Transaction>
-    <Transaction>2019/06/20 23:57:13.000.584,C:\Users\GJOE\Documents\Embarcadero\Studio\Projects\Project1.dproj=C:\ekassa\kassa.dproj</Transaction>
+    <Transaction>2019/06/20 23:11:01.000.728,C:\Users\GJOE\Documents\Embarcadero\Studio\Projects\report.pas=C:\Users\GJOE\Documents\Embarcadero\Studio\Projects\Unit3.pas</Transaction>
+    <Transaction>2019/06/20 23:11:01.000.728,C:\Users\GJOE\Documents\Embarcadero\Studio\Projects\report.dfm=C:\Users\GJOE\Documents\Embarcadero\Studio\Projects\Unit3.dfm</Transaction>
+    <Transaction>2019/06/20 23:56:35.000.351,C:\ekassa\report.dfm=C:\Users\GJOE\Documents\Embarcadero\Studio\Projects\report.dfm</Transaction>
+    <Transaction>2019/06/20 23:56:35.000.351,C:\ekassa\report.pas=C:\Users\GJOE\Documents\Embarcadero\Studio\Projects\report.pas</Transaction>
+    <Transaction>2019/06/20 23:56:37.000.201,C:\ekassa\db.pas=C:\Users\GJOE\Documents\Embarcadero\Studio\Projects\db.pas</Transaction>
+    <Transaction>2019/06/20 23:56:37.000.201,C:\ekassa\db.dfm=C:\Users\GJOE\Documents\Embarcadero\Studio\Projects\db.dfm</Transaction>
+    <Transaction>2019/06/20 23:56:46.000.872,C:\ekassa\ekassa.pas=C:\Users\GJOE\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2019/06/20 23:56:46.000.872,C:\ekassa\ekassa.dfm=C:\Users\GJOE\Documents\Embarcadero\Studio\Projects\Unit1.dfm</Transaction>
+    <Transaction>2019/06/20 23:57:13.000.584,C:\ekassa\kassa.dproj=C:\Users\GJOE\Documents\Embarcadero\Studio\Projects\Project1.dproj</Transaction>
   </Transactions>
 </BorlandProject>

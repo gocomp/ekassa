@@ -46,7 +46,7 @@ object Form1: TForm1
           603)
         object predajb: TRzButton
           AlignWithMargins = True
-          Left = 208
+          Left = 215
           Top = 538
           Width = 164
           Height = 49
@@ -68,7 +68,6 @@ object Form1: TForm1
           Height = 404
           Align = alTop
           Anchors = [akLeft, akTop, akRight, akBottom]
-          DataSource = dbform.dtemp
           Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgConfirmDelete, dgCancelOnExit, dgTitleClick, dgTitleHotTrack]
           TabOrder = 1
           TitleFont.Charset = DEFAULT_CHARSET
@@ -145,7 +144,7 @@ object Form1: TForm1
         object Celkomcena: TStaticText
           Left = 79
           Top = 449
-          Width = 261
+          Width = 265
           Height = 83
           Anchors = [akLeft, akRight, akBottom]
           Caption = '1 000.00'
@@ -172,7 +171,6 @@ object Form1: TForm1
           Width = 770
           Height = 601
           Align = alClient
-          DataSource = dbform.DSklad
           Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgConfirmDelete, dgCancelOnExit, dgTitleClick, dgTitleHotTrack]
           TabOrder = 0
           TitleFont.Charset = DEFAULT_CHARSET
@@ -528,6 +526,195 @@ object Form1: TForm1
       Font.Style = [fsBold]
       ParentFont = False
       TabOrder = 9
+    end
+  end
+  object RESTRequest1: TRESTRequest
+    Client = RESTClient1
+    Params = <
+      item
+        Name = 'state'
+      end>
+    Response = RESTResponse1
+    SynchronizedEvents = False
+    Left = 420
+    Top = 232
+  end
+  object RESTResponse1: TRESTResponse
+    Left = 436
+    Top = 176
+  end
+  object RESTClient1: TRESTClient
+    Accept = 'application/json, text/plain; q=0.9, text/html;q=0.8,'
+    AcceptCharset = 'utf-8, *;q=0.8'
+    BaseURL = 'http://213.160.191.53:3010/api/v1/connectivity/status'
+    Params = <>
+    Left = 436
+    Top = 120
+  end
+  object RESTClient2: TRESTClient
+    Accept = 'application/json, text/plain; q=0.9, text/html;q=0.8,'
+    AcceptCharset = 'utf-8, *;q=0.8'
+    BaseURL = 'http://213.160.191.53:3010/api/v1/identities'
+    Params = <>
+    RaiseExceptionOn500 = False
+    Left = 80
+    Top = 184
+  end
+  object RESTRequest2: TRESTRequest
+    Client = RESTClient2
+    Params = <>
+    Response = RESTResponse2
+    SynchronizedEvents = False
+    Left = 168
+    Top = 168
+  end
+  object RESTResponse2: TRESTResponse
+    ContentType = 'application/json'
+    Left = 208
+    Top = 104
+  end
+  object RESTResponseDataSetAdapter1: TRESTResponseDataSetAdapter
+    Active = True
+    Dataset = FDMemTable1
+    FieldDefs = <>
+    Response = RESTResponse2
+    Left = 168
+    Top = 248
+  end
+  object DBCertificat: TFDMemTable
+    Active = True
+    FieldDefs = <
+      item
+        Name = 'alias'
+        DataType = ftWideString
+        Size = 255
+      end
+      item
+        Name = 'cashRegisterCode'
+        DataType = ftWideString
+        Size = 255
+      end
+      item
+        Name = 'issueDate'
+        DataType = ftWideString
+        Size = 255
+      end
+      item
+        Name = 'expirationDate'
+        DataType = ftWideString
+        Size = 255
+      end
+      item
+        Name = 'serialNumber'
+        DataType = ftWideString
+        Size = 255
+      end
+      item
+        Name = 'isExpired'
+        DataType = ftWideString
+        Size = 255
+      end>
+    IndexDefs = <>
+    FetchOptions.AssignedValues = [evMode]
+    FetchOptions.Mode = fmAll
+    ResourceOptions.AssignedValues = [rvSilentMode]
+    ResourceOptions.SilentMode = True
+    UpdateOptions.AssignedValues = [uvCheckRequired]
+    UpdateOptions.CheckRequired = False
+    StoreDefs = True
+    Left = 280
+    Top = 176
+    object DBCertificatalias: TWideStringField
+      FieldName = 'alias'
+      Size = 255
+    end
+    object DBCertificatcashRegisterCode: TWideStringField
+      FieldName = 'cashRegisterCode'
+      Size = 255
+    end
+    object DBCertificatissueDate: TWideStringField
+      FieldName = 'issueDate'
+      Size = 255
+    end
+    object DBCertificatexpirationDate: TWideStringField
+      FieldName = 'expirationDate'
+      Size = 255
+    end
+    object DBCertificatserialNumber: TWideStringField
+      FieldName = 'serialNumber'
+      Size = 255
+    end
+    object DBCertificatisExpired: TWideStringField
+      FieldName = 'isExpired'
+      Size = 255
+    end
+  end
+  object FDMemTable1: TFDMemTable
+    Active = True
+    FieldDefs = <
+      item
+        Name = 'dic'
+        DataType = ftWideString
+        Size = 255
+      end
+      item
+        Name = 'ico'
+        DataType = ftWideString
+        Size = 255
+      end
+      item
+        Name = 'icdph'
+        DataType = ftWideString
+        Size = 255
+      end
+      item
+        Name = 'corporateBodyFullName'
+        DataType = ftWideString
+        Size = 255
+      end
+      item
+        Name = 'organizationUnit'
+        DataType = ftWideString
+        Size = 255
+      end
+      item
+        Name = 'physicalAddress'
+        DataType = ftWideString
+        Size = 255
+      end>
+    IndexDefs = <>
+    FetchOptions.AssignedValues = [evMode]
+    FetchOptions.Mode = fmAll
+    ResourceOptions.AssignedValues = [rvSilentMode]
+    ResourceOptions.SilentMode = True
+    UpdateOptions.AssignedValues = [uvCheckRequired]
+    UpdateOptions.CheckRequired = False
+    StoreDefs = True
+    Left = 296
+    Top = 240
+    object FDMemTable1dic: TWideStringField
+      FieldName = 'dic'
+      Size = 255
+    end
+    object FDMemTable1ico: TWideStringField
+      FieldName = 'ico'
+      Size = 255
+    end
+    object FDMemTable1icdph: TWideStringField
+      FieldName = 'icdph'
+      Size = 255
+    end
+    object FDMemTable1corporateBodyFullName: TWideStringField
+      FieldName = 'corporateBodyFullName'
+      Size = 255
+    end
+    object FDMemTable1organizationUnit: TWideStringField
+      FieldName = 'organizationUnit'
+      Size = 255
+    end
+    object FDMemTable1physicalAddress: TWideStringField
+      FieldName = 'physicalAddress'
+      Size = 255
     end
   end
 end

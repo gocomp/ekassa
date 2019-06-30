@@ -65,13 +65,13 @@ type
     DBCertificatexpirationDate: TWideStringField;
     DBCertificatserialNumber: TWideStringField;
     DBCertificatisExpired: TWideStringField;
-    FDMemTable1: TFDMemTable;
-    FDMemTable1dic: TWideStringField;
-    FDMemTable1ico: TWideStringField;
-    FDMemTable1icdph: TWideStringField;
-    FDMemTable1corporateBodyFullName: TWideStringField;
-    FDMemTable1organizationUnit: TWideStringField;
-    FDMemTable1physicalAddress: TWideStringField;
+    DBidentities: TFDMemTable;
+    DBidentitiesdic: TWideStringField;
+    DBidentitiesico: TWideStringField;
+    DBidentitiesicdph: TWideStringField;
+    DBidentitiescorporateBodyFullName: TWideStringField;
+    DBidentitiesorganizationUnit: TWideStringField;
+    DBidentitiesphysicalAddress: TWideStringField;
     procedure RzButton1Click(Sender: TObject);
     procedure vkusChange(Sender: TObject);
     procedure RzDBGrid2DblClick(Sender: TObject);
@@ -212,6 +212,11 @@ var
     jsResponse: TJSONValue;
   jsRequest: TJSONObject;
 
+
+    o: TJSONObject;
+  a: TJSONArray;
+  book: TJSONObject;
+
 begin
    try
       try
@@ -226,6 +231,10 @@ begin
 
      RESTRequest2.Execute();
      Memo1.Lines.Add(FDMemTable1ico.Value);
+
+
+
+
 
 //     obj := RESTResponse1.JSONValue as TJSONObject;
 //   data := obj.Values['data'] as TJSONObject;
@@ -252,6 +261,36 @@ begin
  
    end;
 
+ o := TJSONObject.Create;
+  try
+    // Create the books object, which contains the array of books...
+    a := TJSONArray.Create();
+
+    // add the array to the object.
+    o.AddPair('books',a);
+
+    // Create the first book
+    book := TJSONObject.Create;
+    book.AddPair( TJSONPair.Create('title','Zen') );
+    book.AddPair( TJSONPair.Create('subtitle','and The art of motorcycle maintenance.') );
+    book.AddPair( TJSONPair.Create('author','Robert M Pirsig') );
+    book.AddPair( TJSONPair.Create('isbn','9780061908019') );
+    // Add the book to the array
+    a.AddElement(book);
+
+    // Create the second book
+    book := TJSONObject.Create;
+    book.AddPair( TJSONPair.Create('title','Coding in Delphi') );
+    book.AddPair( TJSONPair.Create('subtitle','') );
+    book.AddPair( TJSONPair.Create('author','Nick Hodges') );
+    book.AddPair( TJSONPair.Create('isbn','978-1941266038') );
+    // Add the book to the array
+    a.AddElement(book);
+
+  finally
+    Memo1.Lines.Text := o.ToString;
+    o.Free;
+  end;
 
 
 

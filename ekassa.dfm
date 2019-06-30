@@ -536,20 +536,20 @@ object Form1: TForm1
       end>
     Response = RESTResponse1
     SynchronizedEvents = False
-    Left = 420
-    Top = 232
+    Left = 612
+    Top = 96
   end
   object RESTResponse1: TRESTResponse
-    Left = 436
-    Top = 176
+    Left = 716
+    Top = 88
   end
   object RESTClient1: TRESTClient
     Accept = 'application/json, text/plain; q=0.9, text/html;q=0.8,'
     AcceptCharset = 'utf-8, *;q=0.8'
     BaseURL = 'http://213.160.191.53:3010/api/v1/connectivity/status'
     Params = <>
-    Left = 436
-    Top = 120
+    Left = 852
+    Top = 88
   end
   object RESTClient2: TRESTClient
     Accept = 'application/json, text/plain; q=0.9, text/html;q=0.8,'
@@ -575,7 +575,7 @@ object Form1: TForm1
   end
   object RESTResponseDataSetAdapter1: TRESTResponseDataSetAdapter
     Active = True
-    Dataset = FDMemTable1
+    Dataset = DBidentities
     FieldDefs = <>
     Response = RESTResponse2
     Left = 168
@@ -622,8 +622,8 @@ object Form1: TForm1
     UpdateOptions.AssignedValues = [uvCheckRequired]
     UpdateOptions.CheckRequired = False
     StoreDefs = True
-    Left = 280
-    Top = 176
+    Left = 480
+    Top = 120
     object DBCertificatalias: TWideStringField
       FieldName = 'alias'
       Size = 255
@@ -649,7 +649,7 @@ object Form1: TForm1
       Size = 255
     end
   end
-  object FDMemTable1: TFDMemTable
+  object DBidentities: TFDMemTable
     Active = True
     FieldDefs = <
       item
@@ -690,29 +690,29 @@ object Form1: TForm1
     UpdateOptions.AssignedValues = [uvCheckRequired]
     UpdateOptions.CheckRequired = False
     StoreDefs = True
-    Left = 296
-    Top = 240
-    object FDMemTable1dic: TWideStringField
+    Left = 496
+    Top = 64
+    object DBidentitiesdic: TWideStringField
       FieldName = 'dic'
       Size = 255
     end
-    object FDMemTable1ico: TWideStringField
+    object DBidentitiesico: TWideStringField
       FieldName = 'ico'
       Size = 255
     end
-    object FDMemTable1icdph: TWideStringField
+    object DBidentitiesicdph: TWideStringField
       FieldName = 'icdph'
       Size = 255
     end
-    object FDMemTable1corporateBodyFullName: TWideStringField
+    object DBidentitiescorporateBodyFullName: TWideStringField
       FieldName = 'corporateBodyFullName'
       Size = 255
     end
-    object FDMemTable1organizationUnit: TWideStringField
+    object DBidentitiesorganizationUnit: TWideStringField
       FieldName = 'organizationUnit'
       Size = 255
     end
-    object FDMemTable1physicalAddress: TWideStringField
+    object DBidentitiesphysicalAddress: TWideStringField
       FieldName = 'physicalAddress'
       Size = 255
     end
